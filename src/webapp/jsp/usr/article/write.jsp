@@ -4,7 +4,26 @@
 
 <h1>게시물 작성</h1>
 
-<form>
+<script>
+    function submitForm(form) {
+        form.title.value = form.title.value.trim();
+        if (form.title.value.length == 0) {
+            alert("제목을 입력해주세요!!!");
+            form.title.onfocus();
+            return;
+        }
+        form.body.value = form.body.value.trim();
+        if (form.body.value.length == 0) {
+            alert("내용을 입력해주세요!!!");
+            form.body.onfocus();
+            return;
+        }
+        form.submit();
+
+    }
+</script>
+
+<form onsubmit="submitForm(this); return false;">
     <div>
         <span>제목</span>
         <div>
