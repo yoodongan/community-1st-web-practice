@@ -1,5 +1,9 @@
 package com.ll.exam.article;
 
+import com.ll.exam.article.dto.ArticleDto;
+
+import java.util.List;
+
 public class ArticleService {
     private static ArticleRepository articleRepository;
 
@@ -9,5 +13,10 @@ public class ArticleService {
 
     public long write(String title, String body) {
         return articleRepository.add(title, body);
+    }
+
+    public List<ArticleDto> findAll() {
+        return articleRepository.findAll();
+
     }
 }

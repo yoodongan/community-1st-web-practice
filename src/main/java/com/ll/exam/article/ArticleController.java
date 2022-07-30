@@ -14,11 +14,11 @@ public class ArticleController {
     }
 
     public void showList(Rq rq) {
-        List<ArticleDto> articleDtos = new ArrayList<>();
-        articleDtos.add(new ArticleDto(1, "제목1", "내용1"));
-        articleDtos.add(new ArticleDto(2, "제목2", "내용2"));
-        articleDtos.add(new ArticleDto(3, "제목3", "내용3"));
-
+        List<ArticleDto> articleDtos = articleService.findAll();
+        if (articleDtos.size() == 0) {
+            rq.print("게시물이 없습니다!");
+            return;
+        }
         rq.setAttr("articles", articleDtos);
         rq.view("usr/article/list");
     }

@@ -18,4 +18,8 @@ public class ArticleRepository {
         articleDtos.add(new ArticleDto(lastId, title, body));
         return lastId;
     }
+
+    public List<ArticleDto> findAll() {
+        return articleDtos;
+    }
 }
