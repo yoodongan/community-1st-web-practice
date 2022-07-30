@@ -8,4 +8,9 @@ public class MemberController {
     public void showLogin(Rq rq) {
         rq.print("로그인페이지입니다.");
     }
+
+    public void showWrite(Rq rq) {
+        rq.view("usr/article/write");
+
+    }
 }

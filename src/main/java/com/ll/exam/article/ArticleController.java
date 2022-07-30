@@ -18,8 +18,9 @@ public class ArticleController {
     }
 
     public void doWrite(Rq rq) {
-        rq.view("usr/article/write");
-
-
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body", "");
+        rq.print("<div>title : %s</div>".formatted(title));
+        rq.print("<div>body : %s</div>".formatted(body));
     }
 }
