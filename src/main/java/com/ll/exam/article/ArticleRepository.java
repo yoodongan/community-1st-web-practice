@@ -43,4 +43,10 @@ public class ArticleRepository {
 
     }
 
+    public void delete(long id) {
+        ArticleDto articleDto = findById(id);
+        if (articleDto == null) return;  // 안해줘도 되지만, 확실하게 하기 위해.
+        articleDtos.remove(articleDto);
+
+    }
 }

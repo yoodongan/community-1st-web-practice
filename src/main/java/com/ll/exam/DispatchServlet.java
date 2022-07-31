@@ -30,10 +30,13 @@ public class DispatchServlet extends HttpServlet {
                         articleController.showDetail(rq);
                         break;
                     case "/usr/article/write" :
-                        memberController.showWrite(rq);
+                        articleController.showWrite(rq);
                         break;
                     case "/usr/member/login" :
                         memberController.showLogin(rq);
+                        break;
+                    case "/usr/article/delete" :
+                        articleController.doDelete(rq);
                         break;
                 }
                 break;

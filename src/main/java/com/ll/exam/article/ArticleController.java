@@ -22,6 +22,11 @@ public class ArticleController {
         rq.setAttr("articles", articleDtos);
         rq.view("usr/article/list");
     }
+    public void showWrite(Rq rq) {
+        rq.view("usr/article/write");
+
+    }
+
 
     public void doWrite(Rq rq) {
         String title = rq.getParam("title", "");
@@ -44,5 +49,21 @@ public class ArticleController {
 
         rq.setAttr("article", articleDto);
         rq.view("/usr/article/detail");
+    }
+
+
+    public void doDelete(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+
+        if (id == 0) {
+            rq.print("삭제할 게시물 번호가 없습니다. 번호를 입력해주세요");
+        }
+        ArticleDto articleDto = articleService.findById(id);
+        if (articleDto == null) {
+            rq.print("삭제할 게시물이 존재하지 않습니다!");
+        }
+        articleService.deleteById(id);
+        rq.print("%d 번 게시물이 삭제되었습니다.".formatted(id));
+
     }
 }

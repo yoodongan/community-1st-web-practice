@@ -1,6 +1,7 @@
 package com.ll.exam.member;
 
 import com.ll.exam.Rq;
+import com.ll.exam.article.dto.ArticleDto;
 
 public class MemberController {
 
@@ -9,8 +10,5 @@ public class MemberController {
         rq.print("로그인페이지입니다.");
     }
 
-    public void showWrite(Rq rq) {
-        rq.view("usr/article/write");
 
-    }
 }
