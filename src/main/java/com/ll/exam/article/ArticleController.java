@@ -66,4 +66,32 @@ public class ArticleController {
         rq.print("%d 번 게시물이 삭제되었습니다.".formatted(id));
 
     }
+
+    public void showModify(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        if (id == 0) {
+            rq.print("수정할 게시물 번호가 없습니다. 번호를 입력해주세요");
+        }
+        ArticleDto articleDto = articleService.findById(id);
+        if (articleDto == null) {
+            rq.print("수정할 게시물이 없습니다.");
+        }
+        rq.setAttr("article", articleDto);
+        rq.view("usr/article/modify");
+
+    }
+
+    public void doModify(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);
+        String title = rq.getParam("title", "");
+        String body = rq.getParam("body", "");
+        if (id == 0) {
+            rq.print("수정할 게시물 번호가 없습니다!");
+            return;
+        }
+        articleService.modify(id, title, body);
+        rq.print("<div>%d번 게시물이 수정되었습니다.</div>".formatted(id));
+        rq.print("<div><a href =\"/usr/article/detail/free/%d\">수정된 글로 이동</a></div>".formatted(id));
+
+    }
 }
