@@ -29,4 +29,20 @@ public class ArticleController {
         long id = articleService.write(title, body);
         rq.print("%d번 게시물이 등록되었습니다.".formatted(id));
     }
+
+    public void showDetail(Rq rq) {
+        long id = rq.getLongPathValueByIndex(1, 0);  // 이렇게 해야 usr/article/detail/free/1 에서 1을 가져온다.
+        if (id == 0) {
+            rq.print("게시물이 없습니다! 게시물 입력해주세요.");
+            return;
+        }
+        ArticleDto articleDto = articleService.findById(id);
+        if (articleDto == null) {
+            rq.print("해당 글이 존재하지 않습니다.");
+            return;
+        }
+
+        rq.setAttr("article", articleDto);
+        rq.view("/usr/article/detail");
+    }
 }
